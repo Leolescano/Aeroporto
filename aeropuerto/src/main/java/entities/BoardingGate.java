@@ -8,7 +8,7 @@ public class BoardingGate {
 	@Getter @Setter
 	private int gateNumber;
 	@Getter @Setter
-	private boolean enabled;
+	private boolean status;
 	@Getter @Setter
 	private Plane plane;
 
@@ -18,7 +18,7 @@ public class BoardingGate {
 
 	@Override
 	public String toString() {
-		String enabled = this.enabled ? "In use" : "Released";
-		return "Gate Number " + this.gateNumber  + " Enabled: " + enabled;
+		String status = this.status ? "In use" : "Enabled";
+		return "Gate Number " + this.gateNumber  + " Status: " + status;
 	}
 }

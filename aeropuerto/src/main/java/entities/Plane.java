@@ -29,6 +29,10 @@ import java.util.Scanner;
 @AllArgsConstructor
 @EqualsAndHashCode
 public class Plane {
+
+	@Getter @Setter
+	private String model;
+
 	@Getter @Setter
 	private String numberRegistration;
 
@@ -44,48 +48,52 @@ public class Plane {
 	public static Plane createPlane() {
 		Scanner sc = new Scanner(System.in);
 		boolean flag = true;
-		boolean flag2 = true;
 		int capacity = 0;
 		String state = "";
-		while (flag) {
-			System.out.print("Enter the aircraft registration number: ");
-			String numberRegistration = sc.nextLine();
-			System.out.print("Enter the name of the airline: ");
-			String airline = sc.nextLine();
-			while (flag2) {
-				try {
-					System.out.print("Enter the capacity of the plane: ");
-					capacity = sc.nextInt();
-					sc.nextLine();
-					flag2 = false;
-				} catch (InputMismatchException e) {
-					System.out.println("You need to enter a number");
-					sc.nextLine();
-				}
-			}
-			while (state.equals("")) {
-				System.out.println("Enter the aircraft status");
-				System.out.println("""
-					1- AVAILABLE
-					2- MAINTENANCE
-					3- FLYING""");
-				String op = sc.nextLine();
-				state = op.equals("1") ?
-						"AVAILABLE" : op.equals("2")
-							? "MAINTENANCE" : op.equals("3")
-								? "FLYING" : "";
-			}
-			return new Plane(numberRegistration, airline, capacity, StatesPlane.valueOf(state));
-		}
-		return null;
-	}
 
+		System.out.print("Enter the model of the airplane: ");
+		String model = sc.nextLine();
+		System.out.print("Enter the registration number of the airplane: ");
+		String numberRegistration = sc.nextLine();
+		System.out.print("Enter the name of the airline: ");
+		String airline = sc.nextLine();
+		while (flag) {
+			try {
+				System.out.print("Enter the capacity of the airplane: ");
+				capacity = sc.nextInt();
+				if (capacity > 0) {
+					flag = false;
+				} else {
+					System.out.println("The airplane capacity must be greater than 0.");
+				}
+				sc.nextLine();
+			} catch (InputMismatchException e) {
+				System.out.println("You need to enter a number");
+				sc.nextLine();
+			}
+		}
+		while (state.equals("")) {
+			System.out.println("Enter the airplane status");
+			System.out.println("""
+				1- AVAILABLE
+				2- MAINTENANCE
+				3- FLYING""");
+			String op = sc.nextLine();
+			state = op.equals("1") ?
+					"AVAILABLE" : op.equals("2")
+						? "MAINTENANCE" : op.equals("3")
+							? "FLYING" : "";
+		}
+		System.out.println("The airplane was successfully created");
+		return new Plane(model, numberRegistration, airline, capacity, StatesPlane.valueOf(state));
+	}
 	@Override
 	public String toString() {
-		return "Plane\n" +
-		"Registration Number " + this.numberRegistration + "\n" +
-	    "Airline " + this.airline + "\n" +
-		"Capacity " + this.capacity + " passengers \n" +
-		"State " + this.state + "\n";
+		return "Plane:\n" +
+		"Model: " + this.model + "\n" +
+		"Registration Number: " + this.numberRegistration + "\n" +
+	    "Airline: " + this.airline + "\n" +
+		"Capacity: " + this.capacity + " passengers \n" +
+		"State: " + this.state;
 	}
 }

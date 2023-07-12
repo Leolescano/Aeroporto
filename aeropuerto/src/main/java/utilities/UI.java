@@ -5,11 +5,11 @@ import entities.Plane;
 
 import java.util.Scanner;
 
-public class InterfaceUssers {
-	private static final Scanner sc = new Scanner(System.in);
-	public static String showIterfaceUssers() {
+public class UI {
+	private static final Scanner SC = new Scanner(System.in);
+	public static String showMenu() {
 		return """
-				1- Create Plane
+				\n1- Create Plane
 				2- Edit Plane
 				3- Delete Plane
 				4- Assign Boarding Gate
@@ -18,20 +18,22 @@ public class InterfaceUssers {
 				7- Exit""";
 	}
 	public static void usar() {
-		String op;
-		String numberRegistration;
 		Airport airport = new Airport(5);
+		String op;
+		boolean flag = true;
 		do {
-			System.out.println(showIterfaceUssers());
-			op = sc.next();
+			System.out.println(showMenu());
+			System.out.print(":");
+			op = SC.next();
 			switch (op) {
 				case "1" :
 					airport.addPlane(Plane.createPlane());
 				    break;
 				case "2" :
-					System.out.print("Enter the aircraft registration number");
-					numberRegistration = sc.nextLine();
-					airport.editPlane(numberRegistration);
+					airport.editPlane();
+					break;
+				case "3" :
+					airport.deletePlane();
 					break;
 				case "4" :
 					airport.assignGate();
@@ -42,10 +44,13 @@ public class InterfaceUssers {
 				case "6" :
 					airport.showBoardingGates();
 					break;
+				case "7" :
+					flag = false;
+					break;
 				default:
 					System.out.println("The option is not correct");
 			}
-		} while(!op.equals("7"));
+		} while(flag);
+		System.out.println("Thank you for using our system.");
 	}
-
 }
