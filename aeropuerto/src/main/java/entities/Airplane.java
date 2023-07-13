@@ -1,8 +1,8 @@
 package entities;
 
-import interfaces.interfacesaircraft.ValidationCapacity;
-import interfaces.interfacesaircraft.ValidationNumberRegistration;
-import interfaces.interfacesaircraft.ValidationStates;
+import interfaces.validationinterfaces.ValidationCapacity;
+import interfaces.validationinterfaces.ValidationNumberRegistration;
+import interfaces.validationinterfaces.ValidationStates;
 import lombok.*;
 
 import java.util.InputMismatchException;
@@ -56,7 +56,7 @@ public class Airplane extends Aircraft implements ValidationNumberRegistration, 
 		// Verificando que el estado del avión sea un Enum válido.
 //		StatesAircraft state = validateState();
 
-		System.out.println("The airplane was successfully created");
+
 //		return new Airplane(model, numberRegistration, airline, capacity, state);
 		return new Airplane(null, numberRegistration, null, 120, StatesAircraft.valueOf("AVAILABLE"));
 	}
@@ -107,10 +107,11 @@ public class Airplane extends Aircraft implements ValidationNumberRegistration, 
 		while (state == null) {
 			try {
 				System.out.println("Enter the airplane status");
-				System.out.println("""
-					1- AVAILABLE
-					2- MAINTENANCE
-					3- FLYING""");
+				int cont = 1;
+				for (StatesAircraft value : StatesAircraft.values()) {
+					System.out.println(cont + "- " + value);
+					cont++;
+				}
 				String op = this.SC.nextLine();
 				state = getStateByNumber(Integer.parseInt(op));
 			} catch (NumberFormatException e) {
@@ -123,11 +124,14 @@ public class Airplane extends Aircraft implements ValidationNumberRegistration, 
 
 	@Override
 	public String toString() {
-		return "Airplane:\n" +
-		"Model: " + this.model + "\n" +
-		"Registration Number: " + this.numberRegistration + "\n" +
-	    "Airline: " + this.airline + "\n" +
-		"Capacity: " + this.capacity + " passengers \n" +
-		"State: " + this.state;
+		return """
+			------------------------------
+			Model: %s                  
+			Registration Number: %s     
+			Airline: %s                 
+			Capacity: %d                
+			State: %s                   
+			------------------------------
+			""".formatted(model, numberRegistration, airline, capacity, state);
 	}
 }

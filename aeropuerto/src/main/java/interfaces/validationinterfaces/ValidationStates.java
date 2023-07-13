@@ -1,4 +1,4 @@
-package interfaces.interfacesaircraft;
+package interfaces.validationinterfaces;
 
 import entities.StatesAircraft;
 
