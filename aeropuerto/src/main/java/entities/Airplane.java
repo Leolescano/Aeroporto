@@ -41,24 +41,23 @@ public class Airplane extends Aircraft implements ValidationNumberRegistration, 
 	@Override
 	public Aircraft createAircraft() {
 
-//		System.out.print("Enter the model of the airplane: ");
-//		String model = this.SC.nextLine();
+		System.out.print("Enter the model of the airplane: ");
+		String model = this.SC.nextLine();
 
 		// Verificando que el número de registro sea un número y tenga exactamente 4 digitos.
         String numberRegistration = validateNumberRegistration();
-//
-//		System.out.print("Enter the name of the airline: ");
-//		String airline = this.SC.nextLine();
+
+		System.out.print("Enter the name of the airline: ");
+		String airline = this.SC.nextLine();
 
 		// Verificando que la capacidad sea un número y sea mayor que 0.
-//		int capacity = validateCapacity();
+		int capacity = validateCapacity();
 
 		// Verificando que el estado del avión sea un Enum válido.
-//		StatesAircraft state = validateState();
+		StatesAircraft state = validateState();
 
-
-//		return new Airplane(model, numberRegistration, airline, capacity, state);
-		return new Airplane(null, numberRegistration, null, 120, StatesAircraft.valueOf("AVAILABLE"));
+		return new Airplane(model, numberRegistration, airline, capacity, state);
+		//return new Airplane(null, numberRegistration, null, 120, StatesAircraft.valueOf("AVAILABLE"));
 	}
 
 	@Override
