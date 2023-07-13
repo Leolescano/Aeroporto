@@ -18,6 +18,6 @@ public class BoardingGate {
   @Override
   public String toString() {
     String status = this.status ? "In use" : "Enabled";
-    return "Gate Number " + this.gateNumber + " ==> Status: " + status;
+    return "Boarding Gate Number " + this.gateNumber + " ==> Status: " + status;
   }
 }

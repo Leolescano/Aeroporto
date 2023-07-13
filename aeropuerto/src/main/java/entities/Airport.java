@@ -141,7 +141,12 @@ public class Airport
       System.out.println("The airplane is not on the list");
       return;
     }
-
+    for (BoardingGate gate:this.boardingGates) {
+      Aircraft aircraft = gate.getAircraft();
+      if (aircraft != null && aircraft.getNumberRegistration().equals(numberRegistration)) {
+        gate.setStatus(false);
+      }
+    }
     this.aircraftList.remove(airPlane);
     System.out.println("The airplane has been successfully deleted.");
   }
@@ -172,7 +177,7 @@ public class Airport
           boardingGate.setAircraft(aircraft);
           this.boardingGates.set(numberGate, boardingGate);
           System.out.println(
-              "Update of Boarding Gate " + boardingGate.getGateNumber() + " for Status In use\n");
+              "Update of Boarding Gate number " + boardingGate.getGateNumber() + " for Status In use\n");
         } else {
           throw new GatesException("The boarding gate " + (numberGate + 1) + " is in use");
         }
@@ -182,22 +187,50 @@ public class Airport
     }
   }
 
+  public void releaseBoardingGate(){
+    int numberGate = 0;
+    try {
+      System.out.print("Enter the boarding gate number to be released ");
+      numberGate = this.SC.nextInt();
+      SC.nextLine();
+      if ((numberGate > this.boardingGates.size()) || (numberGate < 1)) {
+        throw new GatesException("That boarding gate number " + numberGate + " does not exist");
+      }
+    } catch (InputMismatchException e) {
+        System.out.println("It needs to be a number.");
+        return;
+    } catch (GatesException e) {
+        System.out.println(e.getMessage());
+        return;
+    }
+    numberGate--;
+    BoardingGate boardingGate = this.boardingGates.get(numberGate);
+    if (boardingGate.isStatus()) {
+      boardingGate.setStatus(false);
+      boardingGate.setAircraft(null);
+      System.out.println("The boarding gate number " + (numberGate + 1) +" has been released.");
+    } else {
+      System.out.println("That boarding gate number " + (numberGate + 1) + " was already released");
+    }
+  }
+
+
   @Override
   public int validateGate(Aircraft aircraft) {
     int numberGate = 0;
     try {
-      System.out.print("Enter the boarding gate ");
+      System.out.print("Enter the number boarding gate ");
       numberGate = SC.nextInt();
       // para liberar el buffer
       SC.nextLine();
       if ((numberGate > this.boardingGates.size()) || (numberGate < 1)) {
-        throw new GatesException("That boarding gate does not exist");
+        throw new GatesException("That boarding gate number " + numberGate + " does not exist");
       }
       numberGate--;
       // Recorro la lista de puertas para saber si el avión ya está en otra puerta
       for (BoardingGate gate : this.boardingGates) {
         if (gate.getAircraft() != null && gate.getAircraft().equals(aircraft)) {
-          throw new GatesException("This airplane is already at the gate " + gate.getGateNumber());
+          throw new GatesException("This airplane is already at the boarding gate " + gate.getGateNumber());
         }
       }
     } catch (InputMismatchException e) {

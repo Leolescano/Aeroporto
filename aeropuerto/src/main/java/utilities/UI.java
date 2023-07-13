@@ -17,9 +17,10 @@ public class UI implements ShowMenu, ManageAirport {
 				2- Edit Airplane
 				3- Delete Airplane
 				4- Assign Boarding Gate
-				5- Show Airplanes
-				6- Show Boarding Gates
-				7- Exit
+				5- Release Boarding Gate
+				6- Show Airplanes
+				7- Show Boarding Gates
+				8- Exit
 				Option:""";
   }
 
@@ -40,9 +41,10 @@ public class UI implements ShowMenu, ManageAirport {
         case "2" -> airport.editAircraft();
         case "3" -> airport.deleteAircraft();
         case "4" -> airport.assignGate();
-        case "5" -> airport.showAircraft();
-        case "6" -> airport.showBoardingGates();
-        case "7" -> flag = false;
+        case "5" -> airport.releaseBoardingGate();
+        case "6" -> airport.showAircraft();
+        case "7" -> airport.showBoardingGates();
+        case "8" -> flag = false;
         default -> System.out.println("The option is not correct");
       }
     } while (flag);
