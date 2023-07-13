@@ -4,6 +4,7 @@ import utilities.UI;
 
 public class Program {
 	public static void main(String[] args) {
-		UI.usar();
+		UI ui = new UI();
+		ui.manageAirport();
 	}
 }

@@ -5,12 +5,15 @@ import lombok.Setter;
 
 
 public class BoardingGate {
+
 	@Getter @Setter
 	private int gateNumber;
+
 	@Getter @Setter
 	private boolean status;
+
 	@Getter @Setter
-	private Plane plane;
+	private Aircraft aircraft;
 
 	public BoardingGate(int gateNumber) {
 		this.gateNumber = gateNumber;
