@@ -27,6 +27,7 @@ public class Airplane extends Aircraft
     String model = this.SC.nextLine();
 
     // Verificando que el número de registro sea un número y tenga exactamente 4 digitos.
+    System.out.print("Enter the registration number of the new airplane (4 digits): ");
     String numberRegistration = validateNumberRegistration();
 
     System.out.print("Enter the name of the airline: ");
@@ -46,7 +47,6 @@ public class Airplane extends Aircraft
     boolean flag = true;
     while (true) {
       try {
-        System.out.print("Enter the airplane registration number with 4 digits: ");
         String numberRegistration = this.SC.nextLine();
         Integer.parseInt(numberRegistration);
         if (numberRegistration.length() == 4) {
@@ -75,7 +75,7 @@ public class Airplane extends Aircraft
         }
         this.SC.nextLine();
       } catch (InputMismatchException e) {
-        System.out.println("You need to enter a number");
+        System.out.println("You need to enter a number.");
         this.SC.nextLine();
       }
     }
@@ -87,7 +87,7 @@ public class Airplane extends Aircraft
     StatesAircraft state = null;
     while (state == null) {
       try {
-        System.out.println("Enter the airplane status");
+        System.out.println("Enter the airplane status.");
         int cont = 1;
         for (StatesAircraft value : StatesAircraft.values()) {
           System.out.println(cont + "- " + value);

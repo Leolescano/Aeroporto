@@ -26,7 +26,7 @@ public class UI implements ShowMenu, ManageAirport {
 
   @Override
   public void manageAirport() {
-    Airport airport = new Airport(5);
+    Airport airport = new Airport(2);
 
     Airplane airplane = new Airplane();
 
@@ -37,15 +37,19 @@ public class UI implements ShowMenu, ManageAirport {
       op = SC.next();
       System.out.println();
       switch (op) {
-        case "1" -> airport.addAircraft((Airplane)airplane.createAircraft());
+        case "1" -> airport.addAircraft((Airplane) airplane.createAircraft());
         case "2" -> airport.editAircraft();
         case "3" -> airport.deleteAircraft();
         case "4" -> airport.assignGate();
         case "5" -> airport.releaseBoardingGate();
         case "6" -> airport.showAircraft();
         case "7" -> airport.showBoardingGates();
-        case "8" -> flag = false;
-        default -> System.out.println("The option is not correct");
+        case "8" -> {
+          System.out.println("Are you sure you want to exit the system? Y/N");
+          String opExit = SC.next().toUpperCase();
+          flag = !opExit.equals("Y");
+        }
+        default -> System.out.println("The option is not correct.");
       }
     } while (flag);
     System.out.println("Thank you for using our system.");

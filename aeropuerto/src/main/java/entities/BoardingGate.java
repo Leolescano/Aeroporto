@@ -18,6 +18,15 @@ public class BoardingGate {
   @Override
   public String toString() {
     String status = this.status ? "In use" : "Enabled";
-    return "Boarding Gate Number " + this.gateNumber + " ==> Status: " + status;
+    if (this.status) {
+      return "Boarding Gate Number "
+          + this.gateNumber
+          + " ==> Status: "
+          + status
+          + " by aircraft number registration "
+          + this.aircraft.getNumberRegistration();
+    } else {
+      return "Boarding Gate Number " + this.gateNumber + " ==> Status: " + status;
+    }
   }
 }
