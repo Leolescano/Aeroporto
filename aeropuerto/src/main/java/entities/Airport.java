@@ -16,6 +16,7 @@ public class Airport
         SearchAircraft,
         DeleteAircraft,
         AssignGate,
+        ReleaseBoardingGate,
         ValidationGate {
   private List<BoardingGate> boardingGates = new ArrayList<>();
   private List<Aircraft> aircraftList = new ArrayList<>();
@@ -206,6 +207,7 @@ public class Airport
     }
   }
 
+  @Override
   public void releaseBoardingGate() {
     int numberGate = 0;
 
