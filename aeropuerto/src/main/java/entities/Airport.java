@@ -190,6 +190,18 @@ public class Airport
 
   public void releaseBoardingGate(){
     int numberGate = 0;
+    int i = 0;
+    // Verifica si todas las puertas estan liberadas
+    for (; i < this.boardingGates.size() ; i++) {
+      if (this.boardingGates.get(i).isStatus()) {
+        break;
+      }
+    }
+    if (i == this.boardingGates.size()) {
+      System.out.println("All boarding gates are released.");
+      return;
+    }
+
     try {
       System.out.print("Enter the boarding gate number to be released ");
       numberGate = this.SC.nextInt();
@@ -220,9 +232,9 @@ public class Airport
     int numberGate = 0;
     try {
       System.out.print("Enter the number boarding gate ");
-      numberGate = SC.nextInt();
+      numberGate = this.SC.nextInt();
       // para liberar el buffer
-      SC.nextLine();
+      this.SC.nextLine();
       if ((numberGate > this.boardingGates.size()) || (numberGate < 1)) {
         throw new GatesException("That boarding gate number " + numberGate + " does not exist");
       }

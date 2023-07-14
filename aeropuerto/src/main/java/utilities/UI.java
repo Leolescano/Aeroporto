@@ -37,7 +37,7 @@ public class UI implements ShowMenu, ManageAirport {
       op = SC.next();
       System.out.println();
       switch (op) {
-        case "1" -> airport.addAircraft((Airplane) airplane.createAircraft());
+        case "1" -> airport.addAircraft((Airplane)airplane.createAircraft());
         case "2" -> airport.editAircraft();
         case "3" -> airport.deleteAircraft();
         case "4" -> airport.assignGate();
