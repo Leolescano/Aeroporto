@@ -21,6 +21,9 @@ public class Airport
   private List<Aircraft> aircraftList = new ArrayList<>();
   private final Scanner SC = new Scanner(System.in);
 
+  // Instancio un Airplane para poder usar los metodos de validación de la clase
+  private Aircraft plane = new Airplane();
+
   public Airport(int numberGates) {
     if (numberGates > 0) {
       for (int i = 1; i <= numberGates; i++) {
@@ -78,8 +81,7 @@ public class Airport
       System.out.println("There are no airplanes.");
       return;
     }
-    System.out.print("Enter the registration number of the airplane to edit ");
-    String numberRegistration = SC.nextLine();
+    String numberRegistration = ((Airplane)this.plane).validateNumberRegistration();
     Aircraft aircraft = searchAircraft(numberRegistration);
     if (aircraft == null) {
       System.out.println("The airplane is not on the list");
@@ -134,8 +136,7 @@ public class Airport
       return;
     }
 
-    System.out.print("Enter the registration number of the airplane to delete ");
-    String numberRegistration = SC.nextLine();
+    String numberRegistration = ((Airplane)this.plane).validateNumberRegistration();
     Airplane airPlane = (Airplane) searchAircraft(numberRegistration);
     if (airPlane == null) {
       System.out.println("The airplane is not on the list");
@@ -158,8 +159,8 @@ public class Airport
       System.out.println("There are no airplanes.");
       return;
     }
-    System.out.print("Please enter the registration number of the airplane ");
-    String numberRegistration = SC.nextLine();
+
+    String numberRegistration = ((Airplane)this.plane).validateNumberRegistration();
     // Verifico si el avión ya existe
     Aircraft aircraft = searchAircraft(numberRegistration);
     if (aircraft == null) {
@@ -213,7 +214,6 @@ public class Airport
       System.out.println("That boarding gate number " + (numberGate + 1) + " was already released");
     }
   }
-
 
   @Override
   public int validateGate(Aircraft aircraft) {

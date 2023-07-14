@@ -7,6 +7,7 @@ public enum StatesAircraft {
   MAINTENANCE(2),
   FLYING(3);
 
+
   @Getter private int number;
 
   private StatesAircraft(int number) {
