@@ -1,4 +1,4 @@
-# mini-proyecto
+# Aeropuerto mini-proyecto
 Interfaz de usuario (UI):
 La aplicación debe contar con una interfaz de usuario intuitiva y fácil de usar.
 Debe proporcionar opciones para agregar, editar y eliminar aviones.
